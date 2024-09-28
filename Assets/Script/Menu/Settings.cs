@@ -31,7 +31,7 @@ public class Settings : MonoBehaviour
 
         for (int i = 0; i < resolutions.Length; i++)
         {
-            string option = resolutions[i].width + "x" + resolutions[i].height + " " + resolutions[i].refreshRate + "Hz";
+            string option = $"{resolutions[i].width}x{resolutions[i].height} {resolutions[i].refreshRateRatio}Hz";
             options.Add(option);
             if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
                 currentResolutionIndex = i;
@@ -42,45 +42,53 @@ public class Settings : MonoBehaviour
         LoadSettings(currentResolutionIndex);
     }
 
-    public void ReverseLevel(){
+    public void ReverseLevel()
+    {
         Time.timeScale = 1f;
         SceneManager.LoadScene(level + 1);
     }
 
-    public void LoadMenu(){
+    public void LoadMenu()
+    {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
-    public void ContinueGame(){
+    public void ContinueGame()
+    {
         SceneManager.LoadScene(PlayerPrefs.GetInt("Last_Level"));
     }
 
-    public void Play() {
+    public void Play()
+    {
         SceneManager.LoadScene(1);
         audioSource.PlayOneShot(open);
     }
 
-    public void SetActiveSettings(){
+    public void SetActiveSettings()
+    {
         menu.SetActive(false);
         settingsMenu.SetActive(true);
         audioSource.PlayOneShot(open);
     }
 
-    public void SetActiveInstruction(){
+    public void SetActiveInstruction()
+    {
         menu.SetActive(false);
         instruction.SetActive(true);
         audioSource.PlayOneShot(open);
     }
 
-    public void Back(){
+    public void Back()
+    {
         menu.SetActive(true);
         settingsMenu.SetActive(false);
         instruction.SetActive(false);
         audioSource.PlayOneShot(open);
     }
 
-    public void Exit(){
+    public void Exit()
+    {
         Application.Quit();
         audioSource.PlayOneShot(open);
     }

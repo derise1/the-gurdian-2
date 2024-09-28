@@ -13,26 +13,32 @@ public class Pause : MonoBehaviour
     public bool levelEnd;
     public bool die;
 
-    private void Start() {
+    private void Start() 
+    {
         StartLevel();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape)){
-            if(!levelEnd && !die){
-                if(PauseGame){
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(!levelEnd && !die)
+            {
+                if(PauseGame)
+                {
                     Resume();
                     startText.SetActive(false);
                 }
-                else{
+                else
+                {
                     PauseMenu();
                 }
             }
         }
     }
     
-    public void Die(){
+    public void Die()
+    {
         die = true;
         PauseGame = true;
         Time.timeScale = 0f;
@@ -43,11 +49,13 @@ public class Pause : MonoBehaviour
         uiPlayer.SetActive(false);
     }
 
-    public void PlayAgain(){
+    public void PlayAgain()
+    {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
     
-    public void StartLevel(){
+    public void StartLevel()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         startText.SetActive(true);
         pauseGameMenu.SetActive(false);
@@ -57,7 +65,8 @@ public class Pause : MonoBehaviour
         PauseGame = true;
     }
 
-    public void LevelEnd(){
+    public void LevelEnd()
+    {
         Cursor.lockState = CursorLockMode.Confined;
         levelEnd = true;
         PauseGame = true;
@@ -65,7 +74,8 @@ public class Pause : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-    public void Resume(){
+    public void Resume()
+    {
         Cursor.lockState = CursorLockMode.Locked;
         pauseGameMenu.SetActive(false);
         settOpen.SetActive(false);
@@ -74,19 +84,22 @@ public class Pause : MonoBehaviour
         PauseGame = false;
     }
 
-    public void SettOpen(){
+    public void SettOpen()
+    {
         settOpen.SetActive(true);
         pauseGameMenu.SetActive(false);
         uiPlayer.SetActive(false);
     }
 
-    public void Back(){
+    public void Back()
+    {
         pauseGameMenu.SetActive(true);
         settOpen.SetActive(false);
         uiPlayer.SetActive(false);
     }
 
-    public void PauseMenu(){
+    public void PauseMenu()
+    {
         Cursor.lockState = CursorLockMode.Confined;
         pauseGameMenu.SetActive(true);
         settOpen.SetActive(false);
@@ -95,7 +108,8 @@ public class Pause : MonoBehaviour
         PauseGame = true;
     }
 
-    public void LoadMenu(){
+    public void LoadMenu()
+    {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
